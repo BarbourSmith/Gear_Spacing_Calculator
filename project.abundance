@@ -1,13 +1,109 @@
 {
-    "atomType": "Molecule",
-    "x": 0,
-    "y": 0,
-    "uniqueID": "id-7703",
-    "name": "Gear_Spacing_Calculator",
-    "topLevel": true,
-    "allAtoms": [],
-    "allConnectors": [],
-    "unitsKey": "MM",
-    "fileTypeVersion": 1,
-    "filetypeVersion": 1
+  "atomType": "Molecule",
+  "x": 0,
+  "y": 0,
+  "uniqueID": "id-7703",
+  "name": "Gear_Spacing_Calculator",
+  "ioValues": [
+    {
+      "name": "Gear_#1_Teeth",
+      "ioValue": 22
+    },
+    {
+      "name": "Gear_#2_Teeth",
+      "ioValue": 22,
+      "currentEquation": "22"
+    },
+    {
+      "name": "Pitch",
+      "ioValue": 5,
+      "currentEquation": "5"
+    }
+  ],
+  "topLevel": true,
+  "allAtoms": [
+    {
+      "atomType": "Output",
+      "x": 0.98,
+      "y": 0.5,
+      "uniqueID": "id-7704",
+      "ioValues": [
+        {
+          "name": "number or geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        }
+      ]
+    },
+    {
+      "atomType": "Code",
+      "x": 0.3611111111111111,
+      "y": 0.4345403899721449,
+      "uniqueID": "id-7706",
+      "ioValues": [
+        {
+          "name": "teeth1",
+          "ioValue": 22,
+          "currentEquation": "10"
+        },
+        {
+          "name": "teeth2",
+          "ioValue": 22
+        },
+        {
+          "name": "pitch",
+          "ioValue": 5,
+          "currentEquation": "1"
+        }
+      ],
+      "interpreterVersion": 1,
+      "code": "function run(teeth1: number, teeth2: number, pitch: number, internal: boolean = false) {\n  // External mesh: centers separated by (D1 + D2)/2\n  // Internal mesh (ring + pinion): centers separated by (D_ring − D_pinion)/2\n  const sign = internal ? -1 : 1;\n  return ((teeth1 + sign * teeth2) * pitch) / (2 * Math.PI);\n}",
+      "compiledCode": "\"use strict\";\nfunction run(teeth1, teeth2, pitch, internal = false) {\n    // External mesh: centers separated by (D1 + D2)/2\n    // Internal mesh (ring + pinion): centers separated by (D_ring − D_pinion)/2\n    const sign = internal ? -1 : 1;\n    return ((teeth1 + sign * teeth2) * pitch) / (2 * Math.PI);\n}\n"
+    },
+    {
+      "atomType": "Input",
+      "x": 0.025384615384615384,
+      "y": 0.36490250696378834,
+      "uniqueID": "id-7719",
+      "name": "Gear_#1_Teeth"
+    },
+    {
+      "atomType": "Input",
+      "x": 0.025384615384615384,
+      "y": 0.5682451253481894,
+      "uniqueID": "id-7722",
+      "name": "Gear_#2_Teeth"
+    },
+    {
+      "atomType": "Input",
+      "x": 0.025384615384615384,
+      "y": 0.7493036211699164,
+      "uniqueID": "id-7725",
+      "name": "Pitch"
+    }
+  ],
+  "allConnectors": [
+    {
+      "ap2Name": "number or geometry",
+      "ap1ID": "id-7706",
+      "ap2ID": "id-7704"
+    },
+    {
+      "ap2Name": "teeth1",
+      "ap1ID": "id-7719",
+      "ap2ID": "id-7706"
+    },
+    {
+      "ap2Name": "teeth2",
+      "ap1ID": "id-7722",
+      "ap2ID": "id-7706"
+    },
+    {
+      "ap2Name": "pitch",
+      "ap1ID": "id-7725",
+      "ap2ID": "id-7706"
+    }
+  ],
+  "unitsKey": "MM",
+  "fileTypeVersion": 1,
+  "filetypeVersion": 1
 }
